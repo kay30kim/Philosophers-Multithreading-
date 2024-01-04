@@ -6,13 +6,15 @@
 /*   By: kay <kay@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 15:59:17 by kay               #+#    #+#             */
-/*   Updated: 2024/01/04 09:19:43 by kay              ###   ########.fr       */
+/*   Updated: 2024/01/04 15:08:48 by kay              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>ㄴ
-int main()
+#include <philo.h>
+
+int	main(void)
 {
-    printf("apb\n");
-    return 0;
+	t_info	instance;
+	
+	return (0);
 }
