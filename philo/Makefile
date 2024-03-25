@@ -5,16 +5,16 @@ NAME		=	philo
 CC			=	gcc
 CFLAGS		=	-Wall -Werror -Wextra
 AR			=	ar rcs
-RM			=	rm -f
+RM			=	rm -rf
 LIBRARIES	=	-lpthread
 
 # Directories
-SOURCES_DIR	=	./src
-INCLUDE_DIR	=	./include
-OBJECTS_DIR	=	./objs
+SOURCES_DIR	=	src
+INCLUDE_DIR	=	include
+OBJECTS_DIR	=	objs
 
 # Files
-FILES		=	main.c 
+FILES		=	main.c thread.c utils.c
 SRCS		=	$(foreach FILE, $(FILES), $(SOURCES_DIR)/$(FILE))
 #				$(foreach FILE, $(FILES), $(shell find $(SOURCES_DIR) -name $(FILE)))
 #				$(addprefix $(SOURCES_DIR)/, $(FILES))
@@ -23,7 +23,7 @@ OBJS		=	$(addprefix $(OBJECTS_DIR)/, $(notdir $(SRCS:.c=.o)))
 
 # $@ = target = $(OBJECTS_DIR)/%.o
 # $< = right side = $(SOURCES_DIR)/%.c
-$(OBJECTS_DIR)/%.o: $(SOURCES_DIR)/%.c
+$(OBJECTS_DIR)/%.o: $(SOURCES_DIR)/%.c | $(OBJECTS_DIR)
 #	$(MKDIR) $(@D)
 	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) -c -o $@ $<
 
@@ -31,6 +31,9 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBRARIES) -o $(NAME)
+
+$(OBJECTS_DIR):
+	@mkdir -p $(OBJECTS_DIR)
 
 clean:
 	$(RM) $(OBJECTS_DIR)

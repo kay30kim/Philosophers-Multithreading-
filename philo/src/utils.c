@@ -14,14 +14,21 @@
 
 int	ft_numcheck(const char *str)
 {
-	int		i;
+	int					i;
+	unsigned long long	num;
 
 	i = 0;
+	num = 0;
 	if (!str || str[i] == '\0' || str[i] == '0')
 		return (1);
 	while (str[i] && str[i] >= '0' && str[i] <= '9')
+	{
+		num = num * 10 + str[i] - '0';
 		i++;
+	}
 	if (str[i] != '\0')
+		return (1);
+	if (num > INT_MAX || num < 1)
 		return (1);
 	return (0);
 }
@@ -40,4 +47,11 @@ size_t	ft_atol(char* str)
 	if (str[i] != '\0')
 		return (1);
 	return (num);
+}
+
+int	print_err(char *str)
+{
+	if (str)
+		printf("%s\n", str);
+	return (1);
 }
